@@ -51,6 +51,14 @@ const Setting = sequelize.define("Setting", {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  heroVideo: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  heroImage: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
 });
 
 module.exports = Setting;

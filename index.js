@@ -14,6 +14,8 @@ const Testimonial = require("./src/models/Testimonial");
 const Setting = require("./src/models/Setting");
 const Job = require("./src/models/Job");
 const JobApplication = require("./src/models/JobApplication");
+const TeamMember = require("./src/models/TeamMember");
+const ProjectPortfolio = require("./src/models/ProjectPortfolio");
 
 const app = express();
 
@@ -38,6 +40,38 @@ sequelize.sync({ force: FORCE_SYNC, alter: true })
                 password: "Deytal@1234"
             });
             console.log("Default admin account seeded successfully (admin@deytal.com / Deytal@1234).");
+        }
+
+        // Auto-seed initial project portfolio items if empty
+        const projCount = await ProjectPortfolio.count();
+        if (projCount === 0) {
+            await ProjectPortfolio.bulkCreate([
+                { title: "Interglobal Training & Development Website", image: "", order: 1 },
+                { title: "Stryxx Wear E-Commerce Website", image: "", order: 2 },
+                { title: "Lab88 Streetwear Fashion Website", image: "", order: 3 },
+                { title: "BW Packaging Solutions Platform", image: "", order: 4 },
+                { title: "Gulmarg Jewellery E-Commerce Website", image: "", order: 5 },
+                { title: "NewsTrendify Dynamic News Portal", image: "", order: 6 },
+                { title: "Roots Tale Cultural E-Commerce Store", image: "", order: 7 },
+                { title: "Railway Management System", image: "", order: 8 },
+            ]);
+            console.log("Initial Project Portfolio mockups seeded successfully.");
+        }
+
+        // Auto-seed initial team members if TeamMember table is empty
+        const teamCount = await TeamMember.count();
+        if (teamCount === 0) {
+            await TeamMember.bulkCreate([
+                { name: "Anand Kumar", title: "Laravel Developer", image: "", order: 1 },
+                { name: "Ajay Kumar Thakur", title: "CEO", image: "", order: 2 },
+                { name: "Baiju Yadav", title: "Software Developer", image: "", order: 3 },
+                { name: "Kush Singh", title: "Frontend Developer", image: "", order: 4 },
+                { name: "Vikash Yadav", title: "WordPress Developer", image: "", order: 5 },
+                { name: "Akansha", title: "Sales Head", image: "", order: 6 },
+                { name: "Mahaveer Singh", title: "Full Stack Developer", image: "", order: 7 },
+                { name: "Anand Kumar", title: "Full Stack Developer", image: "", order: 8 },
+            ]);
+            console.log("Initial team members seeded successfully.");
         }
 
         // Auto-seed initial jobs if Job table is empty
@@ -102,7 +136,8 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
-app.use(express.json());
+app.use(express.json({ limit: "100mb" }));
+app.use(express.urlencoded({ extended: true, limit: "100mb" }));
 app.use(morgan("dev"));
 app.use("/uploads", express.static(path.join(__dirname, "src/uploads")));
 
@@ -115,6 +150,8 @@ app.use("/api/testimonials", require("./src/routes/testimonial.routes"));
 app.use("/api/settings", require("./src/routes/setting.routes"));
 app.use("/api/upload", require("./src/routes/upload.routes"));
 app.use("/api/jobs", require("./src/routes/job.routes"));
+app.use("/api/team", require("./src/routes/team.routes"));
+app.use("/api/project-portfolio", require("./src/routes/projectPortfolio.routes"));
 
 app.get("/", (req, res) => {
     res.send("Deytal MySQL API Server is running");

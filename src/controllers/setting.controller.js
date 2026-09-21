@@ -34,6 +34,8 @@ const updateSettings = async (req, res) => {
     linkedin,
     instagram,
     maintenanceMode,
+    heroVideo,
+    heroImage,
   } = req.body;
 
   try {
@@ -54,6 +56,8 @@ const updateSettings = async (req, res) => {
     if (linkedin !== undefined) settings.linkedin = linkedin;
     if (instagram !== undefined) settings.instagram = instagram;
     if (maintenanceMode !== undefined) settings.maintenanceMode = maintenanceMode;
+    if (heroVideo !== undefined) settings.heroVideo = heroVideo;
+    if (heroImage !== undefined) settings.heroImage = heroImage;
 
     const updatedSettings = await settings.save();
     res.json(updatedSettings);
