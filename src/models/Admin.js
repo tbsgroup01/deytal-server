@@ -22,7 +22,7 @@ const Admin = sequelize.define("Admin", {
   name: {
     type: DataTypes.STRING,
     allowNull: true,
-    defaultValue: "Harshit Kumar",
+    defaultValue: "Ajay Thakur",
   },
   phone: {
     type: DataTypes.STRING,

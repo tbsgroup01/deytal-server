@@ -154,7 +154,7 @@ app.use("/api/team", require("./src/routes/team.routes"));
 app.use("/api/project-portfolio", require("./src/routes/projectPortfolio.routes"));
 
 app.get("/", (req, res) => {
-    res.send("Deytal MySQL API Server is running");
+    res.send("Deytal MySQL API Server is runningggggggggggg");
 });
 
 // Global Error Handler (must be defined after all other routes and middleware)
