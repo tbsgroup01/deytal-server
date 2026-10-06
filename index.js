@@ -16,6 +16,7 @@ const Job = require("./src/models/Job");
 const JobApplication = require("./src/models/JobApplication");
 const TeamMember = require("./src/models/TeamMember");
 const ProjectPortfolio = require("./src/models/ProjectPortfolio");
+const GalleryItem = require("./src/models/GalleryItem");
 
 const app = express();
 
@@ -125,6 +126,70 @@ sequelize.sync({ force: FORCE_SYNC, alter: true })
             ]);
             console.log("Initial job openings seeded successfully.");
         }
+
+        // Auto-seed initial gallery items if GalleryItem table is empty
+        const galleryCount = await GalleryItem.count();
+        if (galleryCount === 0) {
+            await GalleryItem.bulkCreate([
+                {
+                    title: "Silicon Valley Style Open-Plan Workspace",
+                    category: "Office Environment",
+                    description: "Spacious, ergonomic workstation layout with high-speed internet, dual monitors, and natural daylight.",
+                    image: "",
+                    order: 1,
+                },
+                {
+                    title: "Glass Innovation Conference & Strategy Boardroom",
+                    category: "Office Environment",
+                    description: "State-of-the-art conference boardroom with live dashboard displays and video conferencing tech.",
+                    image: "",
+                    order: 2,
+                },
+                {
+                    title: "Senior Full-Stack Developer 4K Workstation",
+                    category: "Tech & Workstations",
+                    description: "Dual 4K IPS monitors with mechanical keyboards, custom desk mats, and dedicated dev environments.",
+                    image: "",
+                    order: 3,
+                },
+                {
+                    title: "In-House Barista Coffee Bar & Breakout Lounge",
+                    category: "Office Environment",
+                    description: "Comfortable sofa lounge and coffee bar for casual team catchups, relaxation, and creative breaks.",
+                    image: "",
+                    order: 4,
+                },
+                {
+                    title: "UI/UX & Engineering Architecture Brainstorming",
+                    category: "Team & Work Culture",
+                    description: "Cross-functional teams sketching user flows, API schemas, and product wireframes together.",
+                    image: "",
+                    order: 5,
+                },
+                {
+                    title: "Global Product Launch & Team Milestone Party",
+                    category: "Events & Celebrations",
+                    description: "Celebrating major client project deliveries, annual achievements, and festival moments as a family.",
+                    image: "",
+                    order: 6,
+                },
+                {
+                    title: "Collaborative Team Work Culture & Mentorship",
+                    category: "Team & Work Culture",
+                    description: "Senior tech leads guiding junior engineers through code reviews, pairing, and sprint planning.",
+                    image: "",
+                    order: 7,
+                },
+                {
+                    title: "Executive Leadership & Strategy Lounge",
+                    category: "Office Environment",
+                    description: "Modern, clean corporate office architecture built for high-performance software engineering teams.",
+                    image: "",
+                    order: 8,
+                },
+            ]);
+            console.log("Initial gallery items seeded successfully.");
+        }
     })
     .catch((err) => {
         console.error("Error syncing MySQL tables:", err.message);
@@ -152,6 +217,7 @@ app.use("/api/upload", require("./src/routes/upload.routes"));
 app.use("/api/jobs", require("./src/routes/job.routes"));
 app.use("/api/team", require("./src/routes/team.routes"));
 app.use("/api/project-portfolio", require("./src/routes/projectPortfolio.routes"));
+app.use("/api/gallery", require("./src/routes/gallery.routes"));
 
 app.get("/", (req, res) => {
     res.send("Deytal MySQL API Server is runningggggggggggg");
