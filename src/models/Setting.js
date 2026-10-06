@@ -59,6 +59,34 @@ const Setting = sequelize.define("Setting", {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  heroTagline: {
+    type: DataTypes.STRING,
+    defaultValue: "IDEAS | TECHNOLOGY | GROWTH",
+  },
+  heroTitle: {
+    type: DataTypes.TEXT,
+    defaultValue: "We Build Digital Experiences That Drive Real Growth",
+  },
+  heroDescription: {
+    type: DataTypes.TEXT,
+    defaultValue: "From modern websites to powerful digital marketing and custom software solutions, we help businesses grow, scale and succeed in the digital world.",
+  },
+  heroButtonText: {
+    type: DataTypes.STRING,
+    defaultValue: "Get Started",
+  },
+  heroButtonLink: {
+    type: DataTypes.STRING,
+    defaultValue: "/contact",
+  },
+  showHeroTextOverlay: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  },
+  showHeroIcons: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  },
 });
 
 module.exports = Setting;

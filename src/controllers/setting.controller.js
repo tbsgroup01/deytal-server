@@ -36,6 +36,13 @@ const updateSettings = async (req, res) => {
     maintenanceMode,
     heroVideo,
     heroImage,
+    heroTagline,
+    heroTitle,
+    heroDescription,
+    heroButtonText,
+    heroButtonLink,
+    showHeroTextOverlay,
+    showHeroIcons,
   } = req.body;
 
   try {
@@ -58,6 +65,13 @@ const updateSettings = async (req, res) => {
     if (maintenanceMode !== undefined) settings.maintenanceMode = maintenanceMode;
     if (heroVideo !== undefined) settings.heroVideo = heroVideo;
     if (heroImage !== undefined) settings.heroImage = heroImage;
+    if (heroTagline !== undefined) settings.heroTagline = heroTagline;
+    if (heroTitle !== undefined) settings.heroTitle = heroTitle;
+    if (heroDescription !== undefined) settings.heroDescription = heroDescription;
+    if (heroButtonText !== undefined) settings.heroButtonText = heroButtonText;
+    if (heroButtonLink !== undefined) settings.heroButtonLink = heroButtonLink;
+    if (showHeroTextOverlay !== undefined) settings.showHeroTextOverlay = showHeroTextOverlay;
+    if (showHeroIcons !== undefined) settings.showHeroIcons = showHeroIcons;
 
     const updatedSettings = await settings.save();
     res.json(updatedSettings);
