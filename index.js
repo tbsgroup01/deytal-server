@@ -220,7 +220,7 @@ app.use("/api/project-portfolio", require("./src/routes/projectPortfolio.routes"
 app.use("/api/gallery", require("./src/routes/gallery.routes"));
 
 app.get("/", (req, res) => {
-    res.send("Deytal MySQL API Server is runningggggggggggg");
+    res.send("Deytal MySQL API Server is running");
 });
 
 // Global Error Handler (must be defined after all other routes and middleware)
