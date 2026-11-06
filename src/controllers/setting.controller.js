@@ -43,6 +43,8 @@ const updateSettings = async (req, res) => {
     heroButtonLink,
     showHeroTextOverlay,
     showHeroIcons,
+    popupEnabled,
+    popupCode,
   } = req.body;
 
   try {
@@ -72,6 +74,8 @@ const updateSettings = async (req, res) => {
     if (heroButtonLink !== undefined) settings.heroButtonLink = heroButtonLink;
     if (showHeroTextOverlay !== undefined) settings.showHeroTextOverlay = showHeroTextOverlay;
     if (showHeroIcons !== undefined) settings.showHeroIcons = showHeroIcons;
+    if (popupEnabled !== undefined) settings.popupEnabled = popupEnabled;
+    if (popupCode !== undefined) settings.popupCode = popupCode;
 
     const updatedSettings = await settings.save();
     res.json(updatedSettings);

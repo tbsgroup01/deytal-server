@@ -87,6 +87,14 @@ const Setting = sequelize.define("Setting", {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+  popupEnabled: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  popupCode: {
+    type: DataTypes.TEXT("long"),
+    allowNull: true,
+  },
 });
 
 module.exports = Setting;
